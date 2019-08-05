@@ -1,3 +1,9 @@
+<?php
+  include_once 'controller/QuestController.php';
+  $questcontroller = new QuestController;
+  $result = $questcontroller->readData();
+?>
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
