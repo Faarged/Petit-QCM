@@ -22,6 +22,17 @@
             $connex->closeConnexion();
         }
 
+        public function addReponse(){
+
+            $connex = new Connexion();
+            $co = $connex->openConnexion();
+
+            $rep = $_POST['reponse'];
+            $valid = $_POST['valid'];
+
+
+        }
+
         public function deleteQuestion($id){
 
             $connex = new Connexion();
@@ -34,18 +45,21 @@
                 'id' => $id
             ));
             $result = $rep->fetchAll(PDO::FETCH_ASSOC);
+
             //supprime lien entre question et réponse
             $liensql = 'DELETE FROM belong_to WHERE id_question = :id';
             $co->prepare($liensql);
             $co->execute(array(
                 'id' => $id
             ));
+
             //supprime lien entre question et qcm
             $lien2sql = 'DELETE FROM have WHERE id = :id';
             $co->prepare($lien2sql);
             $co->execute(array(
                 'id' => $id
             ));
+
             //supprime la question
             $sql = 'DELETE FROM question WHERE id = :id';
             $co->prepare($sql);
