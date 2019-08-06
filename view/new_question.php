@@ -1,9 +1,9 @@
 <?php
-    if(isset($_POST['create'])){
+    if(isset($_POST['add'])){
         include_once '../controller/QuestController.php';
         $questcontroller = new QuestController();
-        $result = $questcontroller->createQcm($_POST);
-        header('Location: recup_id.php');
+        $result = $questcontroller->addQuestion($_POST);
+        header('Location: new_question.php');
     }
 ?>
 <!DOCTYPE html>
@@ -20,16 +20,16 @@
     <body>
 
         <div class="d-flex">
-            <H1>Créer un qcm</H1>
+            <H1>Créer une question</H1>
         </div>
 
         <form  method="post">
             <div class="form-group">
-                <label for="titre">
-                <input type="text" name="titre" class="form-control" placeholder="titre">
+                <label for="question">
+                <input type="text" name="question" class="form-control" placeholder="question">
                 </label>
             </div>
-            <button type="submit" name="create" class="btn btn-primary">Créer qcm</button>
+            <button type="submit" name="add" class="btn btn-primary">Créer question</button>
         </form>
         
 

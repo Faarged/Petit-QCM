@@ -1,5 +1,8 @@
 <?php
     include_once 'Connexion.php';
+    include_once '../modele/Qcm.php';
+    include_once '../modele/Question.php';
+    include_once '../modele/Reponse.php';
 
     class QuestController{
 
@@ -16,9 +19,16 @@
             $req->execute(array(
                 'titre' => $titre
             ));
-            
-            $connex->closeConnexion();
+            return $id = $co->lastInsertId();
         }
+
+        
+
+        /*public function keepId(){
+            $connex = new Connexion();
+            $co = $connex->openConnexion();
+            return $id = $co->lastInsertId();
+        }*/
 
         public function addQuestion($formArray){
 
@@ -29,8 +39,8 @@
 
             $sql = "INSERT INTO question(question) VALUES (:question)";
 
-            $co->prepare($sql);
-            $co->execute(array(
+            $req = $co->prepare($sql);
+            $req->execute(array(
                 'question' => $question
             ));
             
@@ -47,8 +57,8 @@
 
             $sql = "INSERT INTO reponse(reponse, valid) VALUES (:rep, :val)";
 
-            $co->prepare($sql);
-            $co->execute(array(
+            $req = $co->prepare($sql);
+            $req->execute(array(
                 'rep' => $rep,
                 'val' => $valid
             ));
@@ -65,30 +75,30 @@
 
             //recherche id des réponses à supprimer
             $reponses = 'SELECT reponse.id FROM reponse, belong_to WHERE id_question = :id';
-            $co->prepare($reponse);
-            $rep = $co->execute(array(
+            $req = $co->prepare($reponse);
+            $req->execute(array(
                 'id' => $id
             ));
             $result = $rep->fetchAll(PDO::FETCH_ASSOC);
 
             //supprime lien entre question et réponse
             $liensql = 'DELETE FROM belong_to WHERE id_question = :id';
-            $co->prepare($liensql);
-            $co->execute(array(
+            $rep = $co->prepare($liensql);
+            $rep->execute(array(
                 'id' => $id
             ));
 
             //supprime lien entre question et qcm
             $lien2sql = 'DELETE FROM have WHERE id = :id';
-            $co->prepare($lien2sql);
-            $co->execute(array(
+            $sup = $co->prepare($lien2sql);
+            $sup->execute(array(
                 'id' => $id
             ));
 
             //supprime la question
             $sql = 'DELETE FROM question WHERE id = :id';
-            $co->prepare($sql);
-            $co->execute(array(
+            $erase = $co->prepare($sql);
+            $erase->execute(array(
                 'id' => $id
             ));
 
@@ -96,8 +106,8 @@
 
             $repsql = 'DELETE FROM reponse 
             WHERE id = :id';
-            $co->prepare($repsql);
-            $co->execute(array(
+            $bye = $co->prepare($repsql);
+            $bye->execute(array(
                 'id' => $v
             ));
 
@@ -105,6 +115,8 @@
 
             $connex->closeConnexion();
         }
+
+        
 
 
     }
