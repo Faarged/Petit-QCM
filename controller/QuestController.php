@@ -3,7 +3,21 @@
 
     class QuestController{
 
-        
+        public function createQcm($formArray){
+            $connex = new Connexion();
+            $co = $connex->openConnexion();
+
+            $titre = $_POST['titre'];
+
+            $sql = "INSERT INTO qcm(titre) VALUES (:titre)";
+
+            $co->prepare($sql);
+            $co->execute(array(
+                'titre' => $titre
+            ));
+            
+            $connex->closeConnexion();
+        }
 
         public function addQuestion($formArray){
 
@@ -22,13 +36,23 @@
             $connex->closeConnexion();
         }
 
-        public function addReponse(){
+        public function addReponse($formArray){
 
             $connex = new Connexion();
             $co = $connex->openConnexion();
 
             $rep = $_POST['reponse'];
             $valid = $_POST['valid'];
+
+            $sql = "INSERT INTO reponse(reponse, valid) VALUES (:rep, :val)";
+
+            $co->prepare($sql);
+            $co->execute(array(
+                'rep' => $rep,
+                'val' => $valid
+            ));
+            
+            $connex->closeConnexion();
 
 
         }
@@ -39,7 +63,7 @@
             $co = $connex->openConnexion();
 
             //recherche id des réponses à supprimer
-            $reponses = 'SELECT id FROM reponse, belong_to WHERE id_question = :id';
+            $reponses = 'SELECT reponse.id FROM reponse, belong_to WHERE id_question = :id';
             $co->prepare($reponse);
             $rep = $co->execute(array(
                 'id' => $id
