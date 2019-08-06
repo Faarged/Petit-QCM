@@ -2,7 +2,7 @@
     require_once '../controller/QuestController';
     $controller = new QuestController();
 
-    $request = $controller->add($_POST);
+    $result = $controller->addQuestion($_POST);
     header('Location: ../index.php');
 
 ?>

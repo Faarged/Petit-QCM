@@ -1,18 +1,19 @@
 <?php
-    require_once 'Connexion.php';
+    include_once 'Connexion.php';
 
     class QuestController{
 
         public function createQcm($formArray){
-            $connex = new Connexion();
-            $co = $connex->openConnexion();
 
             $titre = $_POST['titre'];
 
-            $sql = "INSERT INTO qcm(titre) VALUES (:titre)";
+            $connex = new Connexion();
+            $co = $connex->openConnexion();
 
-            $co->prepare($sql);
-            $co->execute(array(
+            $sql = "INSERT INTO qcm(titre) VALUES(:titre)";
+
+            $req = $co->prepare($sql);
+            $req->execute(array(
                 'titre' => $titre
             ));
             

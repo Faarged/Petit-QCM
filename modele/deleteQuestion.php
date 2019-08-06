@@ -3,7 +3,7 @@
         require_once '../controller/QuestController';
         $controller = new QuestController();
 
-        $request = $controller->delete($_POST['id']);
+        $result = $controller->delete($_POST['id']);
         header('Location: ../index.php');
     }
 ?>
