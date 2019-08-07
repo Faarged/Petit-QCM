@@ -6,3 +6,8 @@ body{
   font-family: arial;
   font-size: 1.1em;
 }
+.affiche{
+  border: solid 0.5px rgb(93, 112, 39);
+  box-shadow: 2px 2px 5px Green;
+  margin:0.5em;
+}

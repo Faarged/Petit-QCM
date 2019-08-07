@@ -1,10 +1,21 @@
 <?php
     include_once 'Connexion.php';
-    include_once '../modele/Qcm.php';
-    include_once '../modele/Question.php';
-    include_once '../modele/Reponse.php';
+   
 
     class QuestController{
+
+
+        public function show_qcm(){
+
+            $connex = new Connexion();
+            $co = $connex->openConnexion();
+
+            $sql = "SELECT * FROM qcm";
+            $req = $co->prepare($sql);
+            $req->execute();
+            $show = $req->fetchAll();
+            return $show;
+        }
 
         public function createQcm($formArray){
 
@@ -19,21 +30,19 @@
             $req->execute(array(
                 'titre' => $titre
             ));
-            return $id = $co->lastInsertId();
+            $sql2 = "SELECT * FROM qcm ORDER BY id DESC LIMIT 1";
+            $sel = $co->prepare($sql2);
+            $sel->execute();
+            $q = $sel->fetch();
+            return $q['id'];
         }
 
         
 
-        /*public function keepId(){
-            $connex = new Connexion();
-            $co = $connex->openConnexion();
-            return $id = $co->lastInsertId();
-        }*/
 
-        public function addQuestion($formArray){
+        public function addQuestion($formArray, $id){
 
             $question = $_POST['question'];
-
             $connex = new Connexion();
             $co = $connex->openConnexion();
 
@@ -42,6 +51,18 @@
             $req = $co->prepare($sql);
             $req->execute(array(
                 'question' => $question
+            ));
+
+            $sql2 = "SELECT * FROM question ORDER BY ID DESC LIMIT 1";
+            $recup = $co->prepare($sql2);
+            $recup->execute();
+            $idquestion = $recup->fetch();
+
+            $sql3 = "INSERT INTO have(id_qcm, id) VALUES(:idqcm, :idquest)";
+            $link = $co->prepare($sql3);
+            $link->execute(array(
+                'idqcm' => $id,
+                'idquest' => $idquestion['id']
             ));
             
             $connex->closeConnexion();
@@ -53,7 +74,11 @@
             $co = $connex->openConnexion();
 
             $rep = $_POST['reponse'];
-            $valid = $_POST['valid'];
+            if(empty($_POST['valid'])){
+                $valid = 0;
+            }else{
+                $valid = TRUE;
+            }
 
             $sql = "INSERT INTO reponse(reponse, valid) VALUES (:rep, :val)";
 

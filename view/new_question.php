@@ -1,11 +1,4 @@
-<?php
-    if(isset($_POST['add'])){
-        include_once '../controller/QuestController.php';
-        $questcontroller = new QuestController();
-        $result = $questcontroller->addQuestion($_POST);
-        header('Location: new_question.php');
-    }
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -23,7 +16,7 @@
             <H1>Créer une question</H1>
         </div>
 
-        <form  method="post">
+        <form action="../modele/addQuestion.php?id=<?php echo $_GET['id']; ?>" method="post">
             <div class="form-group">
                 <label for="question">
                 <input type="text" name="question" class="form-control" placeholder="question">

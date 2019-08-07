@@ -1,7 +1,7 @@
 <?php
   include_once 'controller/QuestController.php';
   $questcontroller = new QuestController;
-  //$result = $questcontroller->readData();
+  $result = $questcontroller->show_qcm();
 ?>
 
 <!DOCTYPE html>
@@ -15,17 +15,17 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
     crossorigin="anonymous">
   </head>
-  <body>
-    <div class="container-fluid d-flex flex-wrap col-12">
+  <body class="d-flex w-100 justify-content-center text-center">
+    <div class="container-fluid d-flex flex-wrap col-12 justify-content-center">
       <div class="row w-100 d-flex">
       <h1 class="col-12">Exercice de création de questionnaire</h1>
       </div>
     
-      <div class="row w-100 ml-5">
+      <div class="row w-100 justify-content-center">
         <a href="view/new_qcm.php">Créer QCM</a>
       </div>
-      <div class="row">
-        <? include_once 'view/qcm.php'; ?>
+      <div class="row d-flex row-wrap justify-content-around">
+        <?php include_once 'view/qcm.php'; ?>
       </div>
     </div>
 

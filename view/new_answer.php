@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>création de qcm</title>
+        <title>Ajout de réponse</title>
         <link rel="stylesheet" href="../public/css/index.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
@@ -13,16 +12,20 @@
     <body>
 
         <div class="d-flex">
-            <H1>Créer un qcm</H1>
+            <H1>Ajouter une réponse</H1>
         </div>
 
-        <form action="../modele/addQcm.php" method="post">
+        <form action="../modele/addAnswer.php" method="post">
             <div class="form-group">
-                <label for="titre">
-                <input type="text" name="titre" class="form-control" placeholder="titre">
-                </label>
+                <label for="reponse">Ajout d'un choix de réponse</label>
+                <input type="text" name="reponse" class="form-control" placeholder="reponse">
+                
             </div>
-            <button type="submit" name="create" class="btn btn-primary">Créer qcm</button>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" name="valid" value="1" id="valid">
+                <label class="form-check-label" for="valid">Bonne réponse</label>
+            </div>
+            <button type="submit" name="answer" class="btn btn-primary">Ajout de la réponse</button>
         </form>
         
 
