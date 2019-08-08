@@ -1,4 +1,4 @@
-<?
+<?php
     if(isset($_POST["id"])) {
         require_once '../controller/QuestController';
         $controller = new QuestController();

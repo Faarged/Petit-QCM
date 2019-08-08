@@ -53,7 +53,7 @@
                 'question' => $question
             ));
 
-            $sql2 = "SELECT * FROM question ORDER BY ID DESC LIMIT 1";
+            $sql2 = "SELECT * FROM question ORDER BY id DESC LIMIT 1";
             $recup = $co->prepare($sql2);
             $recup->execute();
             $idquestion = $recup->fetch();
@@ -64,11 +64,16 @@
                 'idqcm' => $id,
                 'idquest' => $idquestion['id']
             ));
+            $sql4 = "SELECT * FROM question ORDER BY id DESC LIMIT 1";
+            $sel = $co->prepare($sql4);
+            $sel->execute();
+            $q = $sel->fetch();
+            return $q['id'];
             
             $connex->closeConnexion();
         }
 
-        public function addReponse($formArray){
+        public function addReponse($formArray, $id){
 
             $connex = new Connexion();
             $co = $connex->openConnexion();
@@ -87,10 +92,46 @@
                 'rep' => $rep,
                 'val' => $valid
             ));
+
+            $sql2 = "SELECT * FROM reponse ORDER BY id DESC LIMIT 1";
+            $recup = $co->prepare($sql2);
+            $recup->execute();
+            $idreponse = $recup->fetch();
+
+            $sql3 = "INSERT INTO belong_to(id_question, id) VALUES(:idquestion, :id)";
+            $link = $co->prepare($sql3);
+            $link->execute(array(
+                'idquestion' => $id,
+                'id' => $idreponse['id']
+            ));
+
+            /*$sql4 = "SELECT * FROM reponse ORDER BY id DESC LIMIT 1";
+            $sel = $co->prepare($sql4);
+            $sel->execute();
+            $q = $sel->fetch();
+            return $q['id'];*/
+            return $id;
             
             $connex->closeConnexion();
 
 
+        }
+
+        public function delete($id){
+            $connex = new Connexion();
+            $co = $connex->openConnexion();
+
+            $liensql = "DELETE FROM have WHERE id_qcm = :id";
+            $req = $co->prepare($liensql);
+            $req->execute(array(
+                'id' => $id
+            ));
+
+            $sql = "DELETE FROM qcm WHERE id =:id";
+            $sup = $co->prepare($sql);
+            $sup->execute(array(
+                'id' => $id
+            ));
         }
 
         public function deleteQuestion($id){

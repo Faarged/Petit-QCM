@@ -15,7 +15,7 @@
             <H1>Ajouter une réponse</H1>
         </div>
 
-        <form action="../modele/addAnswer.php" method="post">
+        <form action="../modele/addAnswer.php?id=<?php echo $_GET['id']; ?>" method="post">
             <div class="form-group">
                 <label for="reponse">Ajout d'un choix de réponse</label>
                 <input type="text" name="reponse" class="form-control" placeholder="reponse">
