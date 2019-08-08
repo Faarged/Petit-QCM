@@ -17,6 +17,27 @@
             return $show;
         }
 
+        public function show_quizz($id){
+
+            $connex = new Connexion();
+            $co = $connex->openConnexion();
+
+            $sql = "
+            SELECT * FROM qcm, have, question, belong_to, reponse 
+            WHERE qcm.id = have.id_qcm
+            AND question.id = have.id
+            AND question.id = belong_to.id_question
+            AND reponse.id = belong_to.id
+            AND qcm.id = :id
+            ";
+            $req = $co->prepare($sql);
+            $req->execute(array(
+                'id' => $id
+            ));
+            $show = $req->fetchAll();
+            return $show;
+        }
+
         public function createQcm($formArray){
 
             $titre = $_POST['titre'];
@@ -64,6 +85,7 @@
                 'idqcm' => $id,
                 'idquest' => $idquestion['id']
             ));
+
             $sql4 = "SELECT * FROM question ORDER BY id DESC LIMIT 1";
             $sel = $co->prepare($sql4);
             $sel->execute();

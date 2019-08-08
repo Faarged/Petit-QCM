@@ -7,6 +7,7 @@ if (! empty($result)) {
     <div class="affiche col d-flex row-wrap justify-content-center ">
         <p>
             <?php echo $result[$k]["titre"]; ?><br>
+            <a href="view/quizz.php?id=<?php echo $result[$k]['id']; ?>">Faire le quizz</a><br>
             <a href="modele/deleteQcm.php?id=<?php echo $result[$k]["id"]; ?>">Supprimer</a>
         </p>
     </div>
