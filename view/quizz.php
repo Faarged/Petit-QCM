@@ -23,20 +23,24 @@
             for($j = 0; $j < sizeof($result) ; $j++){
                 if($j == 0) {
                     $tmp = $result[0]['id'];
-                    echo '<form class="affiche" action="">';
+                    echo '<form class="affiche p-1" action="">';
+                    echo '<div class="affiche p-1">';
                     echo '<h2>';
                     echo $result[$j]['question'].'</h2><br>';
                 }
                 if($result[$j]['id'] != $tmp){
                     $tmp = $result[$j]['id'];
-                    echo '<br><h2>';
+                    echo '</div><br><div class="affiche"><h2>';
                     echo $result[$j]['question'].'</h2><br>';
                 } else { ?>
-                    <label for="answer<?php echo $j ?>"><?= $result[$j]['reponse'] ?></label>
-            <input type="radio" name="answer<?php echo $j ?>" value="<?= $result[$j]['valid'] ?>">
+                <div class="form-check">
+                <input type="radio" class="form-check-input" name="answer<?php echo $j ?>" value="<?= $result[$j]['valid'] ?>">
+                    <label class="form-check-label" for="answer<?php echo $j ?>"><?= $result[$j]['reponse'] ?></label>
+                </div>
+                
             <?php }
             }?>
-            
+            </div>
             <button type="submit" name="endqcm">Valider mes réponses</button>
             </form>
             
