@@ -15,24 +15,29 @@
         crossorigin="anonymous">
     </head>
     <body>
-        <?php print_r($result); ?>
+        <?php //print_r($result); ?>
         <div class="affiche d-flex text-center justify-content-center column">
             <div>
             <h1><?= $result[0]['titre'] ?></h1>
-            
-            <form class="affiche" action="">
             <?php
-                $maxi = sizeof($result);
-                for($i = 0; $i <= $maxi; $i++){
-            ?>
-                <h2><?= $result[$i]['question'] ?></h2>
-                <?php
-                $maxj = sizeof($result);
-                for($j = 0; $j <= $maxj; $j++){
-                ?>
-                <label for="answer"><?= $result[$j]['reponse'] ?></label>
-                <input type="radio" name="answer" value="<?= $result[$j]['valid'] ?>">
-            <?php }} ?>
+            for($j = 0; $j < sizeof($result) ; $j++){
+                if($j == 0) {
+                    $tmp = $result[0]['id'];
+                    echo '<form class="affiche" action="">';
+                    echo '<h2>';
+                    echo $result[$j]['question'].'</h2><br>';
+                }
+                if($result[$j]['id'] != $tmp){
+                    $tmp = $result[$j]['id'];
+                    echo '<br><h2>';
+                    echo $result[$j]['question'].'</h2><br>';
+                } else { ?>
+                    <label for="answer<?php echo $j ?>"><?= $result[$j]['reponse'] ?></label>
+            <input type="radio" name="answer<?php echo $j ?>" value="<?= $result[$j]['valid'] ?>">
+            <?php }
+            }?>
+            
+            <button type="submit" name="endqcm">Valider mes réponses</button>
             </form>
             
             </div>

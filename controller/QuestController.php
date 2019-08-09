@@ -23,12 +23,12 @@
             $co = $connex->openConnexion();
 
             $sql = "
-            SELECT * FROM qcm, have, question, belong_to, reponse 
-            WHERE qcm.id = have.id_qcm
-            AND question.id = have.id
-            AND question.id = belong_to.id_question
-            AND reponse.id = belong_to.id
-            AND qcm.id = :id
+            SELECT q.*, r.reponse, r.valid, qcm.titre 
+            FROM question as q, reponse as r, belong_to as bt, have, qcm
+            WHERE q.id = bt.id_question 
+            AND r.id = bt.id 
+            AND have.id = q.id 
+            AND have.id_qcm = :id
             ";
             $req = $co->prepare($sql);
             $req->execute(array(
