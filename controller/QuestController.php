@@ -28,7 +28,8 @@
             WHERE q.id = bt.id_question 
             AND r.id = bt.id 
             AND have.id = q.id 
-            AND have.id_qcm = :id
+            AND have.id_qcm = qcm.id
+            AND qcm.id = :id
             ";
             $req = $co->prepare($sql);
             $req->execute(array(
