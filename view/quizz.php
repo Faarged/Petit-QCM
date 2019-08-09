@@ -23,7 +23,7 @@
             for($j = 0; $j < sizeof($result) ; $j++){
                 if($j == 0) {
                     $tmp = $result[0]['id'];
-                    echo '<form class="affiche p-1" action="">';
+                    echo '<form class="affiche p-1" action="../modele/endqcm.php" method="POST">';
                     echo '<div class="affiche p-1">';
                     echo '<h2>';
                     echo $result[$j]['question'].'</h2><br>';
@@ -34,7 +34,7 @@
                     echo $result[$j]['question'].'</h2><br>';
                 } else { ?>
                 <div class="form-check">
-                <input type="radio" class="form-check-input" name="answer<?php echo $j ?>" value="<?= $result[$j]['valid'] ?>">
+                <input type="checkbox" class="form-check-input" name="answer<?php echo $j ?>" value="<?= $result[$j]['valid'] ?>">
                     <label class="form-check-label" for="answer<?php echo $j ?>"><?= $result[$j]['reponse'] ?></label>
                 </div>
                 

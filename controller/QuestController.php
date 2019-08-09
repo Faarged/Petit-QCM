@@ -136,7 +136,14 @@
             
             $connex->closeConnexion();
 
+        }
 
+        public function point_count($formArray){
+            $formArray = array_slice($formArray, 0,sizeof($formArray) - 1);
+            $compte = sizeof($formArray);
+            $sous_total = array_sum($formArray);
+            $total = ($sous_total / $compte) *100;
+            return $total.'%';
         }
 
         public function delete($id){
