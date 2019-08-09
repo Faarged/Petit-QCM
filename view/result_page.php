@@ -10,7 +10,7 @@
         crossorigin="anonymous">
     </head>
     <body>
-    <div class="affiche">
+    <div class="affiche p-3">
         <h1>Résultat du QCM</h1>
         <h2>Votre score est de <?= $_GET['resultat']; ?></h2>
     </div>

@@ -32,6 +32,12 @@
                     $tmp = $result[$j]['id'];
                     echo '</div><br><div class="affiche"><h2>';
                     echo $result[$j]['question'].'</h2><br>';
+                    ?>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="answer<?php echo $j ?>" value="<?= $result[$j]['valid'] ?>">
+                        <label class="form-check-label" for="answer<?php echo $j ?>"><?= $result[$j]['reponse'] ?></label>
+                    </div>
+                    <?php
                 } else { ?>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" name="answer<?php echo $j ?>" value="<?= $result[$j]['valid'] ?>">

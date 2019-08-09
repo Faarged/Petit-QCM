@@ -4,27 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choix ajout ou fin qcm</title>
-    <link rel="stylesheet" href="public/css/index.css">
+    <link rel="stylesheet" href="../public/css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
     crossorigin="anonymous">
   </head>
   <body class="d-flex w-100 justify-content-center text-center">
-    <div class="container-fluid d-flex flex-wrap col-12 justify-content-center">
+    <div class="container-fluid d-flex flex-wrap col-12 column justify-content-center">
       <div class="row w-100 d-flex">
       <h1 class="col-12">Choisir si le qcm est finit ou non</h1>
       </div>
-    
-      <div class="row w-30 justify-content-center affiche">
-        <a href="new_question.php">Ajouter une nouvelle question</a>
+      <div class="affiche col-12 w-100 d-flex flex-column">
+        <div class="row mr-1 ml-1 justify-content-center affiche">
+          <a href="new_question.php?id=<?= $_GET['idqcm'] ?>">Ajouter une nouvelle question</a>
+        </div>
+        <div class="row mr-1 ml-1 justify-content-center affiche">
+          <a href="new_answer.php?id=<?php echo $_GET['idquestion']; ?>">Ajouter une nouvelle réponse</a>
+        </div>
+        <div class=" mr-1 ml-1 p-2 justify-content-center affiche">
+          <a href="../index.php"><button> Finir le questionnaire</button></a>
+        </div>
       </div>
-      <div class="row w-30 justify-content-center affiche">
-        <a href="new_answer.php?id=<?php echo $_GET['idquestion']; ?>">Ajouter une nouvelle réponse</a>
-      </div>
-      <div class="row w-30 justify-content-center affiche">
-        <a href="../index.php">Finir le questionnaire</a>
-      </div>
-      
     </div>
 
 

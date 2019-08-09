@@ -8,7 +8,7 @@ if (! empty($result)) {
         <p>
             <?php echo $result[$k]["titre"]; ?><br>
             <a href="view/quizz.php?id=<?php echo $result[$k]['id']; ?>">Faire le quizz</a><br>
-            <a href="modele/deleteQcm.php?id=<?php echo $result[$k]["id"]; ?>">Supprimer</a>
+            <a href="modele/deleteQcm.php?id=<?php echo $result[$k]["id"]; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?')">Supprimer</a>
         </p>
     </div>
 <?php

@@ -128,18 +128,33 @@
                 'id' => $idreponse['id']
             ));
 
-            /*$sql4 = "SELECT * FROM reponse ORDER BY id DESC LIMIT 1";
-            $sel = $co->prepare($sql4);
-            $sel->execute();
-            $q = $sel->fetch();
-            return $q['id'];*/
             return $id;
             
             $connex->closeConnexion();
 
         }
 
+        public function searchid($id){
+            $connex = new Connexion();
+            $co = $connex->openConnexion();
+
+            $sql = "
+            SELECT qcm.id
+            FROM qcm, have, question as q
+            WHERE q.id = have.id
+            AND qcm.id = have.id_qcm
+            AND q.id = :id
+            ";
+            $recup = $co->prepare($sql);
+            $recup->execute(array(
+                'id' => $id
+            ));
+            $idqcm = $recup->fetch();
+            return $idqcm['id'];
+        }
+
         public function point_count($formArray){
+           
             $formArray = array_slice($formArray, 0,sizeof($formArray) - 1);
             $compte = sizeof($formArray);
             $sous_total = array_sum($formArray);
