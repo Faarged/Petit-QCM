@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Mar 13 Août 2019 à 08:52
+-- Généré le :  Jeu 22 Août 2019 à 14:44
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
--- Version de PHP :  7.2.19-0ubuntu0.18.04.1
+-- Version de PHP :  7.2.19-0ubuntu0.18.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -136,8 +136,7 @@ INSERT INTO `have` (`id`, `id_qcm`) VALUES
 (25, 85),
 (26, 85),
 (27, 85),
-(28, 85),
-(34, 90);
+(28, 85);
 
 -- --------------------------------------------------------
 
@@ -155,8 +154,7 @@ CREATE TABLE `qcm` (
 --
 
 INSERT INTO `qcm` (`id`, `titre`) VALUES
-(85, 'Jeux vidÃ©os'),
-(90, 'Doom');
+(85, 'Jeux vidÃ©os');
 
 -- --------------------------------------------------------
 
@@ -343,7 +341,7 @@ ALTER TABLE `reponse`
 -- AUTO_INCREMENT pour la table `qcm`
 --
 ALTER TABLE `qcm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT pour la table `question`
 --
