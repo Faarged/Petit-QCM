@@ -131,7 +131,6 @@
             return $id;
             
             $connex->closeConnexion();
-
         }
 
         public function searchid($id){
